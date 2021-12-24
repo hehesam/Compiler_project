@@ -5,13 +5,20 @@
 %{
     #include <stdio.h>
     int lines = 1;
+   
 %}
 
-
+DIGIT  [0-9]
+ID     [a-z][a-z0-9]*
 
 /* Rule Section */
 
 %%
+
+
+{DIGIT}+ {
+printf( "An integer: %s (%d)\n", yytext , atoi( yytext ) );
+}
 
 "hello" { 
         printf("hello scanned.\n");
@@ -22,7 +29,7 @@
 }
 
 "int" {
-
+ 
 }
 
 "char" {
@@ -67,6 +74,7 @@
 
 "break" {
     
+
 }
 
 w(x|y)z  {
@@ -77,9 +85,14 @@ w(x|y)z  {
     printf("I found a %s. \n", yytext);
 }
 
-[0-9]+  {
-    printf("I found %s. \n", yytext);
+
+
+[a-z|A-Z|_][a-z|A-Z|0-9|_]+ {
+    printf("variable maker :  %s. \n", yytext);
+
 }
+
+
 
 %%
  /* Code Section */
