@@ -21,16 +21,64 @@
     return 1;
 }
 
-[A-Z]+  {
+"int" {
+
+}
+
+"char" {
+
+}
+
+"if" {
+
+}
+
+"else" {
+
+}
+
+"elseif" {
+    
+}
+
+"while" {
+    
+}
+
+"for" {
+    
+}
+
+"return" {
+    
+}
+
+"void" {
+    
+}
+
+"main" {
+    
+}
+
+"continue" {
+    
+}
+
+"break" {
+    
+}
+
+w(x|y)z  {
+    printf("found %s", yytext);
+}
+
+[a-z]+  {
     printf("I found a %s. \n", yytext);
 }
 
 [0-9]+  {
     printf("I found %s. \n", yytext);
-}
-
-w(x|y)z  {
-    printf("found %s", yytext);
 }
 
 %%
