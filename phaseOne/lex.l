@@ -18,6 +18,7 @@ ID     [a-z][a-z0-9]*
 
 {DIGIT}+ {
 printf( "An integer: %s (%d)\n", yytext , atoi( yytext ) );
+
 }
 
 "hello" { 
@@ -29,50 +30,59 @@ printf( "An integer: %s (%d)\n", yytext , atoi( yytext ) );
 }
 
 "int" {
- 
+    printf("TOKEN_INT\n");
 }
 
 "char" {
-
+    printf("TOKEN_CHAR\n");
 }
 
 "if" {
-
+    printf("TOKEN_IF\n");
 }
 
 "else" {
+    printf("TOKEN_ELSE\n");
 
 }
 
 "elseif" {
+    printf("TOKEN_ELSEIF\n");
     
 }
 
 "while" {
+    printf("TOKEN_WHILE\n");
     
 }
 
 "for" {
+    printf("TOKEN_FOR\n");
     
 }
 
 "return" {
+    printf("TOKEN_RETURN\n");
     
 }
 
 "void" {
+    printf("TOKEN_VOID\n");
     
 }
 
 "main" {
+    printf("TOKEN_MAIN\n");
     
 }
 
 "continue" {
+    printf("TOKEN_CONTINUE\n");
     
 }
 
 "break" {
+    printf("TOKEN_BREAK\n");
     
 
 }
@@ -90,6 +100,10 @@ w(x|y)z  {
 [a-z|A-Z|_][a-z|A-Z|0-9|_]+ {
     printf("variable maker :  %s. \n", yytext);
 
+}
+
+. {
+    printf(" space ");
 }
 
 
