@@ -10,6 +10,7 @@
 
 DIGIT  [0-9]
 ID     [a-z][a-z0-9]*
+OTHER  "["|"]"|"{"|"}"|"("|")"
 
 /* Rule Section */
 
@@ -17,9 +18,109 @@ ID     [a-z][a-z0-9]*
 
 
 {DIGIT}+ {
-printf( "An integer: %s (%d)\n", yytext , atoi( yytext ) );
+printf("TOKEN_INT_CONST\n");
 
 }
+
+["][a-z|A-Z]+["] {
+    printf("TOKEN_CHAR_CONST\n");
+}
+
+[#][a-z|A-Z|0-9| ]+ {
+    printf("TOKEN_ONELINE_COMMENT\n");
+}
+
+[#!][a-z|A-Z|0-9|\t|\n| ]+[!#] {
+    printf("TOKEN_SEVERAL_LINE_COMMENT\n");
+}
+
+"[" {
+    printf("TOKEN_");
+}
+"]" {
+    printf("TOKEN_");
+}
+"{" {
+    printf("TOKEN_");
+}
+"}" {
+    printf("TOKEN_");
+}
+"(" {
+    printf("TOKEN_");
+}
+")" {
+    printf("TOKEN_");
+}
+"," {
+    printf("TOKEN_");
+}
+"." {
+    printf("TOKEN_");
+}
+
+
+
+
+"+" {
+    printf("TOKEN_\n");
+}
+"-" {
+    printf("TOKEN_\n");
+}
+"*" {
+    printf("TOKEN_\n");
+}
+"/" {
+    printf("TOKEN_\n");
+}
+"^" {
+    printf("TOKEN_\n");
+}
+"!" {
+    printf("TOKEN_\n");
+}
+
+
+
+"=" {
+    printf("TOKEN_\n");
+}
+">" {
+    printf("TOKEN_\n");
+}
+"<" {
+    printf("TOKEN_\n");
+}
+"<=" {
+    printf("TOKEN_\n");
+}
+">=" {
+    printf("TOKEN_\n");
+}
+
+
+
+"==" {
+    printf("TOKEN_\n");
+}
+"!=" {
+    printf("TOKEN_\n");
+}
+"|" {
+    printf("TOKEN_\n");
+}
+"||" {
+    printf("TOKEN_\n");
+}
+"&" {
+    printf("TOKEN_\n");
+}
+"&&" {
+    printf("TOKEN_\n");
+}
+
+
 
 "hello" { 
         printf("hello scanned.\n");
@@ -87,23 +188,21 @@ printf( "An integer: %s (%d)\n", yytext , atoi( yytext ) );
 
 }
 
+
+
 w(x|y)z  {
     printf("found %s", yytext);
-}
-
-[a-z]+  {
-    printf("I found a %s. \n", yytext);
 }
 
 
 
 [a-z|A-Z|_][a-z|A-Z|0-9|_]+ {
-    printf("variable maker :  %s. \n", yytext);
+    printf("TOKEN_UNDENTIFIER\n");
 
 }
 
 . {
-    printf(" space ");
+    
 }
 
 
