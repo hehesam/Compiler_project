@@ -16,14 +16,18 @@ OTHER  "["|"]"|"{"|"}"|"("|")"
 
 %%
 
+"-" {
+    printf("TOKEN_MINUS\n");
+    fprintf(yyout,"TOKEN_MINUS\n");
+}
 
-{DIGIT}+ {
+[0-9]+|[-0-9]+ {
 printf("TOKEN_INT_CONST\n");
 fprintf(yyout, "TOKEN_INT_CONST\n");
 
 }
 
-["][a-z|A-Z]+["] {
+["][a-z|A-Z| ]+["] {
     printf("TOKEN_CHAR_CONST\n");
     fprintf(yyout,"TOKEN_CHAR_CONST\n");
 
@@ -78,15 +82,11 @@ fprintf(yyout, "TOKEN_INT_CONST\n");
 
 
 
-
 "+" {
     printf("TOKEN_PLUS\n");
     fprintf(yyout,"TOKEN_PLUS\n");
 }
-"-" {
-    printf("TOKEN_MINUS\n");
-    fprintf(yyout,"TOKEN_MINUS\n");
-}
+
 "*" {
     printf("TOKEN_MULTI\n");
     fprintf(yyout,"TOKEN_MULTI\n");
