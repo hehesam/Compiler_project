@@ -243,7 +243,7 @@ fprintf(yyout, "TOKEN_INT_CONST\n");
  int main(){
      FILE* f = fopen("text_case.txt", "r");
      yyin = f;
-     FILE* w = fopen("phase_tokens.txt", "w");
+     FILE* w = fopen("phase_one_tokens.txt", "w");
      yyout = w;
      yylex();
      return 0;
