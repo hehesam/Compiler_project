@@ -4,13 +4,10 @@
 
 %{
     #include <stdio.h>
-    char line[100];
    
 %}
 
-DIGIT  [0-9]
-ID     [a-z][a-z0-9]*
-OTHER  "["|"]"|"{"|"}"|"("|")"
+
 
 /* Rule Section */
 
@@ -241,9 +238,9 @@ fprintf(yyout, "TOKEN_INT_CONST\n");
  /* Code Section */
 
  int main(){
-     FILE* f = fopen("text_case.txt", "r");
+     FILE* f = fopen("test_case.txt", "r");
      yyin = f;
-     FILE* w = fopen("phase_one_tokens.txt", "w");
+     FILE* w = fopen("phase_1_tokens.txt", "w");
      yyout = w;
      yylex();
      return 0;
