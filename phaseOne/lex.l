@@ -222,7 +222,7 @@ fprintf(yyout, "TOKEN_INT_CONST\n");
 
 
 
-[a-z|A-Z|_][a-z|A-Z|0-9|_]+ {
+[a-z|A-Z|_][a-z|A-Z|0-9|_]* {
     printf("TOKEN_INDENTIFIER\n");
     fprintf(yyout,"TOKEN_INDENTIFIER\n");
 

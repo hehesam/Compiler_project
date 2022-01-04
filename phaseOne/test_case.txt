@@ -1,5 +1,10 @@
 
-
+int main(){
+      int b = -12.
+      int c = 15.
+      int a = b + c.
+      return a.
+}
 
 #!  hesam 123 AAAAA
       !#

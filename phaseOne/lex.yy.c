@@ -367,8 +367,8 @@ static const flex_int16_t yy_accept[94] =
     {   0,
         0,    0,   45,   44,   43,   18,   44,   44,   28,   10,
        11,   15,   14,   12,    1,   13,   16,    2,   21,   19,
-       20,   44,    6,    7,   17,   44,   44,   44,   44,   44,
-       44,   44,   44,   44,    8,   26,    9,   43,    0,   25,
+       20,   42,    6,    7,   17,   42,   42,   42,   42,   42,
+       42,   42,   42,   42,    8,   26,    9,   43,    0,   25,
         0,    4,   29,    2,    2,   22,   24,   23,   42,   42,
        42,   42,   42,   42,   32,   42,   42,   42,   42,   42,
        27,    5,    3,   42,   42,   42,   42,   36,   30,   42,
@@ -515,11 +515,10 @@ char *yytext;
 /* Definition Section*/
 #line 6 "lex.l"
     #include <stdio.h>
-    char line[100];
    
-#line 521 "lex.yy.c"
+#line 520 "lex.yy.c"
 /* Rule Section */
-#line 523 "lex.yy.c"
+#line 522 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -736,10 +735,10 @@ YY_DECL
 		}
 
 	{
-#line 17 "lex.l"
+#line 14 "lex.l"
 
 
-#line 743 "lex.yy.c"
+#line 742 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -798,7 +797,7 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 19 "lex.l"
+#line 16 "lex.l"
 {
     printf("TOKEN_MINUS\n");
     fprintf(yyout,"TOKEN_MINUS\n");
@@ -806,7 +805,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 24 "lex.l"
+#line 21 "lex.l"
 {
 printf("TOKEN_INT_CONST\n");
 fprintf(yyout, "TOKEN_INT_CONST\n");
@@ -815,7 +814,7 @@ fprintf(yyout, "TOKEN_INT_CONST\n");
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 30 "lex.l"
+#line 27 "lex.l"
 {
     printf("TOKEN_CHAR_CONST\n");
     fprintf(yyout,"TOKEN_CHAR_CONST\n");
@@ -824,7 +823,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 37 "lex.l"
+#line 34 "lex.l"
 {
     printf("TOKEN_ONELINE_COMMENT\n");
     fprintf(yyout,"TOKEN_ONELINE_COMMENT\n");
@@ -834,7 +833,7 @@ YY_RULE_SETUP
 case 5:
 /* rule 5 can match eol */
 YY_RULE_SETUP
-#line 43 "lex.l"
+#line 40 "lex.l"
 {
     printf("TOKEN_SEVERAL_LINE_COMMENT\n");
     fprintf(yyout,"TOKEN_SEVERAL_LINE_COMMENT\n");
@@ -842,7 +841,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 50 "lex.l"
+#line 47 "lex.l"
 {
     printf("TOKEN_LEFTBRACKET\n");
     fprintf(yyout,"TOKEN_LEFTBRACKET\n");
@@ -850,7 +849,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 54 "lex.l"
+#line 51 "lex.l"
 {
     printf("TOKEN_RIGHTBRACKET\n");
     fprintf(yyout,"TOKEN_RIGHTBRACKET\n");
@@ -858,7 +857,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 58 "lex.l"
+#line 55 "lex.l"
 {
     printf("TOKEN_LEFTBRACE\n");
     fprintf(yyout,"TOKEN_LEFTBRACE\n");
@@ -866,7 +865,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 62 "lex.l"
+#line 59 "lex.l"
 {
     printf("TOKEN_RIGHTBRACE\n");
     fprintf(yyout,"TOKEN_RIGHTBRACE\n");
@@ -874,7 +873,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 66 "lex.l"
+#line 63 "lex.l"
 {
     printf("TOKEN_LEFTPAREN\n");
     fprintf(yyout,"TOKEN_LEFTPAREN\n");
@@ -882,7 +881,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 70 "lex.l"
+#line 67 "lex.l"
 {
     printf("TOKEN_RIGHTPAREN\n");
     fprintf(yyout,"TOKEN_RIGHTPAREN\n");
@@ -890,7 +889,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 74 "lex.l"
+#line 71 "lex.l"
 {
     printf("TOKEN_COMMA\n");
     fprintf(yyout,"TOKEN_COMMA\n");
@@ -898,7 +897,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 78 "lex.l"
+#line 75 "lex.l"
 {
     printf("TOKEN_DOT\n");
     fprintf(yyout,"TOKEN_DOT\n");
@@ -906,7 +905,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 85 "lex.l"
+#line 82 "lex.l"
 {
     printf("TOKEN_PLUS\n");
     fprintf(yyout,"TOKEN_PLUS\n");
@@ -914,7 +913,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 90 "lex.l"
+#line 87 "lex.l"
 {
     printf("TOKEN_MULTI\n");
     fprintf(yyout,"TOKEN_MULTI\n");
@@ -922,7 +921,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 94 "lex.l"
+#line 91 "lex.l"
 {
     printf("TOKEN_SLASH\n");
     fprintf(yyout,"TOKEN_SLASH\n");
@@ -930,7 +929,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 98 "lex.l"
+#line 95 "lex.l"
 {
     printf("TOKEN_CARET\n");
     fprintf(yyout,"TOKEN_CARET\n");
@@ -938,7 +937,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 102 "lex.l"
+#line 99 "lex.l"
 {
     printf("TOKEN_EXCLAMATION\n");
     fprintf(yyout,"TOKEN_EXCLAMATION\n");
@@ -946,7 +945,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 109 "lex.l"
+#line 106 "lex.l"
 {
     printf("TOKEN_ASSIGN\n");
     fprintf(yyout,"TOKEN_ASSIGN\n");
@@ -954,7 +953,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 113 "lex.l"
+#line 110 "lex.l"
 {
     printf("TOKEN_GREATER\n");
     fprintf(yyout,"TOKEN_GREATER\n");
@@ -962,7 +961,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 117 "lex.l"
+#line 114 "lex.l"
 {
     printf("TOKEN_LESS\n");
     fprintf(yyout,"TOKEN_LESS\n");
@@ -970,7 +969,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 121 "lex.l"
+#line 118 "lex.l"
 {
     printf("TOKEN_LESSANDEQUAL\n");
     fprintf(yyout,"TOKEN_LESSANDEQUAL\n");
@@ -978,7 +977,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 125 "lex.l"
+#line 122 "lex.l"
 {
     printf("TOKEN_GREATERANDEQUAL\n");
     fprintf(yyout,"TOKEN_GREATERANDEQUAL\n");
@@ -986,7 +985,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 132 "lex.l"
+#line 129 "lex.l"
 {
     printf("TOKEN_EQUAL\n");
     fprintf(yyout,"TOKEN_EQUAL\n");
@@ -994,7 +993,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 136 "lex.l"
+#line 133 "lex.l"
 {
     printf("TOKEN_NOTEQUAL\n");
     fprintf(yyout,"TOKEN_NOTEQUAL\n");
@@ -1002,7 +1001,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 140 "lex.l"
+#line 137 "lex.l"
 {
     printf("TOKEN_PIPE\n");
     fprintf(yyout,"TOKEN_PIPE\n");
@@ -1010,7 +1009,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 144 "lex.l"
+#line 141 "lex.l"
 {
     printf("TOKEN_OR\n");
     fprintf(yyout,"TOKEN_OR\n");
@@ -1018,7 +1017,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 148 "lex.l"
+#line 145 "lex.l"
 {
     printf("TOKEN_AMPERSAND\n");
     fprintf(yyout,"TOKEN_AMPERSAND\n");
@@ -1026,7 +1025,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 152 "lex.l"
+#line 149 "lex.l"
 {
     printf("TOKEN_AND\n");
     fprintf(yyout,"TOKEN_AND\n");
@@ -1034,7 +1033,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 160 "lex.l"
+#line 157 "lex.l"
 {
     printf("TOKEN_INT\n");
     fprintf(yyout,"TOKEN_INT\n");
@@ -1042,7 +1041,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 165 "lex.l"
+#line 162 "lex.l"
 {
     printf("TOKEN_CHAR\n");
     fprintf(yyout,"TOKEN_CHAR\n");
@@ -1050,7 +1049,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 170 "lex.l"
+#line 167 "lex.l"
 {
     printf("TOKEN_IF\n");
     fprintf(yyout,"TOKEN_IF\n");
@@ -1058,7 +1057,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 175 "lex.l"
+#line 172 "lex.l"
 {
     printf("TOKEN_ELSE\n");
     fprintf(yyout,"TOKEN_ELSE\n");
@@ -1067,7 +1066,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 181 "lex.l"
+#line 178 "lex.l"
 {
     printf("TOKEN_ELSEIF\n");
     fprintf(yyout,"TOKEN_ELSEIF\n");
@@ -1075,7 +1074,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 186 "lex.l"
+#line 183 "lex.l"
 {
     printf("TOKEN_WHILE\n");
     fprintf(yyout,"TOKEN_WHILE\n");
@@ -1084,7 +1083,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 192 "lex.l"
+#line 189 "lex.l"
 {
     printf("TOKEN_FOR\n");
     fprintf(yyout,"TOKEN_FOR\n");
@@ -1092,7 +1091,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 197 "lex.l"
+#line 194 "lex.l"
 {
     printf("TOKEN_RETURN\n");
     fprintf(yyout,"TOKEN_RETURN\n");
@@ -1101,7 +1100,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 203 "lex.l"
+#line 200 "lex.l"
 {
     printf("TOKEN_VOID\n");
     fprintf(yyout,"TOKEN_VOID\n");
@@ -1109,7 +1108,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 208 "lex.l"
+#line 205 "lex.l"
 {
     printf("TOKEN_MAIN\n");
     fprintf(yyout,"TOKEN_MAIN\n");
@@ -1117,7 +1116,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 213 "lex.l"
+#line 210 "lex.l"
 {
     printf("TOKEN_CONTINUE\n");
     fprintf(yyout,"TOKEN_CONTINUE\n");
@@ -1125,7 +1124,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 218 "lex.l"
+#line 215 "lex.l"
 {
     printf("TOKEN_BREAK\n");
     fprintf(yyout,"TOKEN_BREAK\n");
@@ -1135,7 +1134,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 228 "lex.l"
+#line 225 "lex.l"
 {
     printf("TOKEN_INDENTIFIER\n");
     fprintf(yyout,"TOKEN_INDENTIFIER\n");
@@ -1145,17 +1144,17 @@ YY_RULE_SETUP
 case 43:
 /* rule 43 can match eol */
 YY_RULE_SETUP
-#line 234 "lex.l"
+#line 231 "lex.l"
 {
     
 }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 240 "lex.l"
+#line 237 "lex.l"
 ECHO;
 	YY_BREAK
-#line 1159 "lex.yy.c"
+#line 1158 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2160,14 +2159,14 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 240 "lex.l"
+#line 237 "lex.l"
 
  /* Code Section */
 
  int main(){
-     FILE* f = fopen("text_case.txt", "r");
+     FILE* f = fopen("test_case.txt", "r");
      yyin = f;
-     FILE* w = fopen("phase_tokens.txt", "w");
+     FILE* w = fopen("phase_1_tokens.txt", "w");
      yyout = w;
      yylex();
      return 0;
