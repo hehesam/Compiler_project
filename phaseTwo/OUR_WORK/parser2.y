@@ -2,11 +2,6 @@
     #include <stdio.h>
 %}
 
-%union {
-    char* word;
-    int int_val;
-}
-
 %token TOKEN_VOID TOKEN_INT TOKEN_CHAR TOKEN_LEFTPAREN TOKEN_RIGHTPAREN TOKEN_INDENTIFIER 
 %token TOKEN_CHAR_CONST TOKEN_INT_CONST TOKEN_DOT
 
@@ -23,7 +18,7 @@ start       :
 
 grammer     :
                 type main full_body
-        ;
+        :
 
 type : TOKEN_VOID 
         |   TOKEN_INT 
@@ -64,6 +59,6 @@ int yywarp(){
 
 
 
-    yyparse();
+yyparse();
 
 

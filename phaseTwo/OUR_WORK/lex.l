@@ -3,6 +3,7 @@
 /* Definition Section*/
 
 %{
+    #include "parser.tab.h"
     #include <stdio.h>
    
 %}
@@ -14,207 +15,207 @@
 %%
 
 "-" {
-    printf("TOKEN_MINUS\n");
-    fprintf(yyout,"TOKEN_MINUS\n");
+    
+    return (TOKEN_MINUS);
 }
 
 [0-9]+|[-0-9]+ {
-printf("TOKEN_INT_CONST\n");
-fprintf(yyout, "TOKEN_INT_CONST\n");
+
+return(TOKEN_INT_CONST);
 
 }
 
 ["][a-z|A-Z| ]+["] {
-    printf("TOKEN_CHAR_CONST\n");
-    fprintf(yyout,"TOKEN_CHAR_CONST\n");
+    
+    return (TOKEN_CHAR_CONST);
 
 }
 
 
 [#][a-z|A-Z|0-9| ]+ {
-    printf("TOKEN_ONELINE_COMMENT\n");
-    fprintf(yyout,"TOKEN_ONELINE_COMMENT\n");
+    
+    return (TOKEN_ONELINE_COMMENT);
 
 }
 
 [#!][a-z|A-Z|0-9|\t|\n| ]+[!#] {
-    printf("TOKEN_SEVERAL_LINE_COMMENT\n");
-    fprintf(yyout,"TOKEN_SEVERAL_LINE_COMMENT\n");
+    
+    return (TOKEN_SEVERAL_LINE_COMMENT);
 }
 
 
 
 "[" {
-    printf("TOKEN_LEFTBRACKET\n");
-    fprintf(yyout,"TOKEN_LEFTBRACKET\n");
+    
+    return (TOKEN_LEFTBRACKET);
 }
 "]" {
-    printf("TOKEN_RIGHTBRACKET\n");
-    fprintf(yyout,"TOKEN_RIGHTBRACKET\n");
+    
+    return (TOKEN_RIGHTBRACKET);
 }
 "{" {
-    printf("TOKEN_LEFTBRACE\n");
-    fprintf(yyout,"TOKEN_LEFTBRACE\n");
+    
+    return (TOKEN_LEFTBRACE);
 }
 "}" {
-    printf("TOKEN_RIGHTBRACE\n");
-    fprintf(yyout,"TOKEN_RIGHTBRACE\n");
+    
+    return (TOKEN_RIGHTBRACE);
 }
 "(" {
-    printf("TOKEN_LEFTPAREN\n");
-    fprintf(yyout,"TOKEN_LEFTPAREN\n");
+    
+    return (TOKEN_LEFTPAREN);
 }
 ")" {
-    printf("TOKEN_RIGHTPAREN\n");
-    fprintf(yyout,"TOKEN_RIGHTPAREN\n");
+    
+    return (TOKEN_RIGHTPAREN);
 }
 "," {
-    printf("TOKEN_COMMA\n");
-    fprintf(yyout,"TOKEN_COMMA\n");
+    
+    return (TOKEN_COMMA);
 }
 "." {
-    printf("TOKEN_DOT\n");
-    fprintf(yyout,"TOKEN_DOT\n");
+    
+    return (TOKEN_DOT);
 }
 
 
 
 "+" {
-    printf("TOKEN_PLUS\n");
-    fprintf(yyout,"TOKEN_PLUS\n");
+    
+    return (TOKEN_PLUS);
 }
 
 "*" {
-    printf("TOKEN_MULTI\n");
-    fprintf(yyout,"TOKEN_MULTI\n");
+    
+    return (TOKEN_MULTI);
 }
 "/" {
-    printf("TOKEN_SLASH\n");
-    fprintf(yyout,"TOKEN_SLASH\n");
+    
+    return (TOKEN_SLASH);
 }
 "^" {
-    printf("TOKEN_CARET\n");
-    fprintf(yyout,"TOKEN_CARET\n");
+    
+    return (TOKEN_CARET);
 }
 "!" {
-    printf("TOKEN_EXCLAMATION\n");
-    fprintf(yyout,"TOKEN_EXCLAMATION\n");
+    
+    return (TOKEN_EXCLAMATION);
 }
 
 
 
 "=" {
-    printf("TOKEN_ASSIGN\n");
-    fprintf(yyout,"TOKEN_ASSIGN\n");
+    
+    return (TOKEN_ASSIGN);
 }
 ">" {
-    printf("TOKEN_GREATER\n");
-    fprintf(yyout,"TOKEN_GREATER\n");
+    
+    return (TOKEN_GREATER);
 }
 "<" {
-    printf("TOKEN_LESS\n");
-    fprintf(yyout,"TOKEN_LESS\n");
+    
+    return (TOKEN_LESS);
 }
 "<=" {
-    printf("TOKEN_LESSANDEQUAL\n");
-    fprintf(yyout,"TOKEN_LESSANDEQUAL\n");
+    
+    return (TOKEN_LESSANDEQUAL);
 }
 ">=" {
-    printf("TOKEN_GREATERANDEQUAL\n");
-    fprintf(yyout,"TOKEN_GREATERANDEQUAL\n");
+    
+    return (TOKEN_GREATERANDEQUAL);
 }
 
 
 
 "==" {
-    printf("TOKEN_EQUAL\n");
-    fprintf(yyout,"TOKEN_EQUAL\n");
+    
+    return (TOKEN_EQUAL);
 }
 "!=" {
-    printf("TOKEN_NOTEQUAL\n");
-    fprintf(yyout,"TOKEN_NOTEQUAL\n");
+    
+    return (TOKEN_NOTEQUAL);
 }
 "|" {
-    printf("TOKEN_PIPE\n");
-    fprintf(yyout,"TOKEN_PIPE\n");
+    
+    return (TOKEN_PIPE);
 }
 "||" {
-    printf("TOKEN_OR\n");
-    fprintf(yyout,"TOKEN_OR\n");
+    
+    return (TOKEN_OR);
 }
 "&" {
-    printf("TOKEN_AMPERSAND\n");
-    fprintf(yyout,"TOKEN_AMPERSAND\n");
+    
+    return (TOKEN_AMPERSAND);
 }
 "&&" {
-    printf("TOKEN_AND\n");
-    fprintf(yyout,"TOKEN_AND\n");
+    
+    return (TOKEN_AND);
 }
 
 
 
 
 "int" {
-    printf("TOKEN_INT\n");
-    fprintf(yyout,"TOKEN_INT\n");
+    
+    return (TOKEN_INT);
 }
 
 "char" {
-    printf("TOKEN_CHAR\n");
-    fprintf(yyout,"TOKEN_CHAR\n");
+    
+    return (TOKEN_CHAR);
 }
 
 "if" {
-    printf("TOKEN_IF\n");
-    fprintf(yyout,"TOKEN_IF\n");
+    
+    return (TOKEN_IF);
 }
 
 "else" {
-    printf("TOKEN_ELSE\n");
-    fprintf(yyout,"TOKEN_ELSE\n");
+    
+    return (TOKEN_ELSE);
 
 }
 
 "elseif" {
-    printf("TOKEN_ELSEIF\n");
-    fprintf(yyout,"TOKEN_ELSEIF\n");
+    
+    return (TOKEN_ELSEIF);
 }
 
 "while" {
-    printf("TOKEN_WHILE\n");
-    fprintf(yyout,"TOKEN_WHILE\n");
+    
+    return (TOKEN_WHILE);
     
 }
 
 "for" {
-    printf("TOKEN_FOR\n");
-    fprintf(yyout,"TOKEN_FOR\n");
+    
+    return (TOKEN_FOR);
 }
 
 "return" {
-    printf("TOKEN_RETURN\n");
-    fprintf(yyout,"TOKEN_RETURN\n");
+    
+    return (TOKEN_RETURN);
     
 }
 
 "void" {
-    printf("TOKEN_VOID\n");
-    fprintf(yyout,"TOKEN_VOID\n");
+    
+    return (TOKEN_VOID);
 }
 
 "main" {
-    printf("TOKEN_MAIN\n");
-    fprintf(yyout,"TOKEN_MAIN\n");
+    
+    return (TOKEN_MAIN);
 }
 
 "continue" {
-    printf("TOKEN_CONTINUE\n");
-    fprintf(yyout,"TOKEN_CONTINUE\n");
+    
+    return (TOKEN_CONTINUE);
 }
 
 "break" {
-    printf("TOKEN_BREAK\n");
-    fprintf(yyout,"TOKEN_BREAK\n");
+    
+    return (TOKEN_BREAK);
     
 
 }
@@ -223,8 +224,8 @@ fprintf(yyout, "TOKEN_INT_CONST\n");
 
 
 [a-z|A-Z|_][a-z|A-Z|0-9|_]* {
-    printf("TOKEN_INDENTIFIER\n");
-    fprintf(yyout,"TOKEN_INDENTIFIER\n");
+    
+    return (TOKEN_INDENTIFIER);
 
 }
 
@@ -242,6 +243,6 @@ fprintf(yyout, "TOKEN_INT_CONST\n");
      yyin = f;
      FILE* w = fopen("phase_1_tokens.txt", "w");
      yyout = w;
-     yylex();
+     
      return 0;
  }
