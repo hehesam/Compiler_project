@@ -1,28 +1,8 @@
-int main (){
-    int num1 = 9800
-    int _2sum.
-    char string = "this is test!".
-    int num2 = 77.
-    int iter = 1222.
-    int resSum.
-    int resDif.
-    if (num1 > num2){
-        int temp.
-        temp = num1.
-        num1 = num2.
-        num2 = temp.
-        resSum = sum(num1, num1, iter).
-        char _)) = "".
+int main() {
+    int a = 12.
     }
-    elseif (num2 > num1){
-        temp = num2.
-        num2 = num1.
-        num1 = temp.
-        resDif = dif(num2, num1).
-    }
-    #Comment
-    
-    while(num1+num2<100){
-        num1+num2.
-    }
-}
+
+
+
+
+

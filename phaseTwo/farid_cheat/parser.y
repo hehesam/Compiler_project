@@ -30,8 +30,8 @@ void yyerror(char *s);
 
 %%
 
-program         : %empty
-                | functions main
+program         :
+                 functions main
                 ;
 
 functions       : %empty

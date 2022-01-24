@@ -2,28 +2,18 @@
     #include <stdio.h>
 %}
 
-%union {
-    char* word;
-    int int_val;
-}
+%token TOKEN_VOID TOKEN_INT TOKEN_CHAR TOKEN_LEFTPAREN TOKEN_RIGHTPAREN TOKEN_INDENTIFIER
 
-%token TOKEN_VOID TOKEN_INT TOKEN_CHAR TOKEN_LEFTPAREN TOKEN_RIGHTPAREN TOKEN_INDENTIFIER 
-%token TOKEN_CHAR_CONST TOKEN_INT_CONST TOKEN_DOT
-
-%start start
+%start input
 
 %right TOKEN_ASSIGN 
 
 %left TOKEN_LEFTBRACE TOKEN_LEFTBRACKET TOKEN_LEFTPAREN  TOKEN_RIGHTBRACE TOKEN_RIGHTBRACKET TOKEN_RIGHTPAREN
 
 %%
-start       : 
-                grammer
-        ;
-
-grammer     :
-                type main full_body
-        ;
+input : 
+            type main body
+    ;
 
 type : TOKEN_VOID 
         |   TOKEN_INT 
@@ -63,7 +53,7 @@ int yywarp(){
 }
 
 
-
+int main(void){
     yyparse();
-
+}
 

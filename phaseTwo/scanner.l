@@ -6,7 +6,7 @@
 Num [0-9]
 
 %% 
-{Num}+ {yylval = atoi(yytext); return (Number);}
+{Num}+ {yylval = atoi(yytyext); return (Number);}
 "+"    {return(Plus);}
 "-"     {return(Minus);}
 "="      {return(Equal);}

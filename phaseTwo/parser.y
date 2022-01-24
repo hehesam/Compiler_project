@@ -1,34 +1,31 @@
 %{
-#include <stdio.h>
-#define YYSTYPE double
-int yyerror (char const *s);
-extern int yylex (void);
+    #include <stdio.h>
 %}
-%token  PLS MNS
-%token  MUL DIV
-%token  NWL
-%token  NUM
-%token  LFT RIT
-%left   PLS MNS
-%left   MUL DIV
+
+
+%start input
+%token Plus Minus Number Equal Mult Div Power
+
+%left Plus Minus
+%left Mult Div
+%right Power
+
+
+
 %%
-Exp:    NUM             { $$ = $1; };
-Exp:    Exp PLS Exp     { $$ = $1 + $3; };
-Exp:    Exp MNS Exp     { $$ = $1 - $3; };
-Exp:    Exp MUL Exp     { $$ = $1 * $3; };
-Exp:    Exp DIV Exp     { $$ = $1 / $3; };
-Exp:    LFT Exp RIT     { $$ = $2; };
-Line:   NWL;
-Line:   Exp NWL         { printf("%f\n", $1); };
-;
+
+start : 
+
 %%
-int yyerror(char const *s) {
-  printf("%s\n", s);
+
+void yyerror(car *s){
+    printf("Error happend %s", s);
 }
-int main(){
-    int ret = yyparse();
-    if (ret){
-    fprintf(stderr, "%d error found.\n",ret);
-    }
-    return 0;
+
+int yywarp(){
+    return 1;
+}
+
+int main(void){
+    yyparse();
 }
