@@ -1,9 +1,8 @@
-%option noyywrap
 
 /* Definition Section*/
 
 %{
-    #include "parser.tab.h"
+    #include "parser2.tab.h"
     #include <stdio.h>
    
 %}
@@ -19,13 +18,10 @@
     return (TOKEN_MINUS);
 }
 
-[0-9]+|[-0-9]+ {
-
-return(TOKEN_INT_CONST);
-
-}
+[0-9]+|[-0-9]+ { yylval.number = atoi(yytext); return(TOKEN_INT_CONST);}
 
 ["][a-z|A-Z| ]+["] {
+    sscanf(yytext, "%s", yylval.name);
     
     return (TOKEN_CHAR_CONST);
 
@@ -238,11 +234,3 @@ return(TOKEN_INT_CONST);
 %%
  /* Code Section */
 
- int main(){
-     FILE* f = fopen("test_case.txt", "r");
-     yyin = f;
-     FILE* w = fopen("phase_1_tokens.txt", "w");
-     yyout = w;
-     
-     return 0;
- }

@@ -27,13 +27,16 @@
 %type<name> TOKEN_CHAR_CONST
 
 %%
-start       : 
+start   : 
                 grammer
         ;
 
+
 grammer     :
                 type main full_body
-        :
+        ;
+
+
 
 type : TOKEN_VOID 
         |   TOKEN_INT 
@@ -41,17 +44,47 @@ type : TOKEN_VOID
     ;
 
 main :  
-            TOKEN_LEFTPAREN type TOKEN_INDENTIFIER TOKEN_RIGHTPAREN
+            TOKEN_MAIN TOKEN_LEFTPAREN  TOKEN_RIGHTPAREN
     ;
+
 full_body : 
             TOKEN_LEFTBRACE body_part TOKEN_RIGHTBRACE
     ;
 
 body_part : 
-            body_part 
-        |   body_part Assign_value
 
-;
+        |   body_part Assign_value
+        |   body_part conditional
+
+    ;
+
+conditional :
+            TOKEN_IF condition full_body
+        |   TOKEN_WHILE condition full_body
+    ;
+
+condition :
+            TOKEN_LEFTPAREN TOKEN_INDENTIFIER logical_actions logical_gate logical_actions TOKEN_RIGHTPAREN 
+
+        ;
+
+logical_actions :
+             TOKEN_INDENTIFIER
+            |  TOKEN_CHAR_CONST
+            |  TOKEN_INT_CONST
+
+        ;
+
+logical_gate  :
+            TOKEN_LESSANDEQUAL
+            |TOKEN_GREATERANDEQUAL
+            |TOKEN_EQUAL
+            |TOKEN_NOTEQUAL
+            |TOKEN_AND
+            |TOKEN_OR
+        
+        ;
+
 
 
 Assign_value : 
@@ -63,6 +96,7 @@ Assign_value :
 value :
             TOKEN_CHAR_CONST{printf("the string of constant_str is : %s", $1);} 
         |   TOKEN_INT_CONST {printf("the number of constant_int is : %d", $1);}
+        |   TOKEN_INDENTIFIER
 
 ;
 %%
