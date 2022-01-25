@@ -15,6 +15,7 @@
 %token TOKEN_GREATERANDEQUAL TOKEN_EQUAL TOKEN_NOTEQUAL TOKEN_PIPE TOKEN_OR TOKEN_AMPERSAND TOKEN_AND
 %token TOKEN_INT TOKEN_CHAR TOKEN_IF TOKEN_ELSE TOKEN_ELSEIF TOKEN_WHILE TOKEN_FOR TOKEN_RETURN
 %token TOKEN_VOID TOKEN_MAIN TOKEN_CONTINUE TOKEN_BREAK TOKEN_INDENTIFIER
+%token TOKEN_MINUS_MINUS TOKEN_PLUS_PLUS
 
 %start start
 
@@ -55,8 +56,20 @@ body_part :
 
         |   body_part Assign_value
         |   body_part conditional
+        |   body_part for_loop
 
     ;
+
+for_loop :
+        TOKEN_LEFTPAREN variable_definition TOKEN_COMMA for_conditon TOKEN_COMMA step TOKEN_RIGHTPAREN body_part
+        ;
+
+
+for_conditon : 
+        logical_actions logical_gate logical_actions
+        ;
+
+step 
 
 conditional :
             TOKEN_IF condition full_body

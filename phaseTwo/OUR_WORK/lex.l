@@ -99,6 +99,14 @@
 }
 
 
+"++" {
+    return (TOKEN_PLUS_PLUS);
+}
+
+"--" {
+    return (TOKEN_MINUS_MINUS);
+}
+
 
 "=" {
     
@@ -233,4 +241,4 @@
 
 %%
  /* Code Section */
-
+ 
