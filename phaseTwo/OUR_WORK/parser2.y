@@ -1,6 +1,12 @@
 %{
     #include <stdio.h>
+
+    extern FILE* yyin;
+    extern FILE* yyout;
+
+
 %}
+
 
 %union {
     char name[20];
@@ -72,16 +78,16 @@ value :
 
 
 int yywarp(){
+
+    return 1;
 }
 
 
 
 
 
-
-
-int main(){
-    FILE *inputFile = fopen("test_case.txt","r");
+int main(int argc, char * argv[]){
+    FILE *inputFile = fopen("argv[1]","r");
     yyin = inputFile;
 
     FILE *outputFile = fopen("Phase1_Tokens.txt", "w");
