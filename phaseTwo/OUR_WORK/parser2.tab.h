@@ -90,7 +90,9 @@ extern int yydebug;
     TOKEN_MAIN = 296,
     TOKEN_CONTINUE = 297,
     TOKEN_BREAK = 298,
-    TOKEN_INDENTIFIER = 299
+    TOKEN_INDENTIFIER = 299,
+    TOKEN_MINUS_MINUS = 300,
+    TOKEN_PLUS_PLUS = 301
   };
 #endif
 
@@ -98,12 +100,12 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 11 "parser2.y"
+#line 14 "parser2.y"
 
     char name[20];
     int  number;  
 
-#line 107 "parser2.tab.h"
+#line 109 "parser2.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

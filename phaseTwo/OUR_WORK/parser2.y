@@ -4,6 +4,9 @@
     extern FILE* yyin;
     extern FILE* yyout;
 
+    extern int yylineno;
+    extern char* yytext;
+
 
 %}
 
@@ -21,6 +24,7 @@
 %token TOKEN_GREATERANDEQUAL TOKEN_EQUAL TOKEN_NOTEQUAL TOKEN_PIPE TOKEN_OR TOKEN_AMPERSAND TOKEN_AND
 %token TOKEN_INT TOKEN_CHAR TOKEN_IF TOKEN_ELSE TOKEN_ELSEIF TOKEN_WHILE TOKEN_FOR TOKEN_RETURN
 %token TOKEN_VOID TOKEN_MAIN TOKEN_CONTINUE TOKEN_BREAK TOKEN_INDENTIFIER
+%token TOKEN_MINUS_MINUS TOKEN_PLUS_PLUS 
 
 %start start
 
@@ -34,27 +38,30 @@
 
 %%
 start       : 
-                grammer
+                |start grammer
         ;
 
 grammer     :
                 type main full_body
-        :
+        ;
 
-type : TOKEN_VOID 
-        |   TOKEN_INT 
+type : 
+         
+            TOKEN_INT 
         |   TOKEN_CHAR 
     ;
 
 main :  
-            TOKEN_LEFTPAREN type TOKEN_INDENTIFIER TOKEN_RIGHTPAREN
+            | TOKEN_MAIN TOKEN_LEFTPAREN TOKEN_RIGHTPAREN
     ;
+
 full_body : 
             TOKEN_LEFTBRACE body_part TOKEN_RIGHTBRACE
     ;
 
 body_part : 
-            body_part 
+
+        |   body_part 
         |   body_part Assign_value
 
 ;
@@ -74,11 +81,12 @@ value :
 %%
 
 
+void yyerror(char *s){
 
 
+}
 
-int yywarp(){
-
+int yywrap(){
     return 1;
 }
 
@@ -87,8 +95,9 @@ int yywarp(){
 
 
 int main(int argc, char * argv[]){
-    FILE *inputFile = fopen("argv[1]","r");
-    yyin = inputFile;
+
+    
+    yyin = fopen("test_case.txt","r");
 
     FILE *outputFile = fopen("Phase1_Tokens.txt", "w");
     yyout = outputFile;
@@ -98,6 +107,3 @@ int main(int argc, char * argv[]){
     return 0;
  }
 
-void yyerror(char *s){
-    printf("Error happend %s", s);
-}

@@ -34,8 +34,8 @@
 /* Undocumented macros, especially those whose name start with YY_,
    are private implementation details.  Do not rely on them.  */
 
-#ifndef YY_YY_PARSER_TAB_H_INCLUDED
-# define YY_YY_PARSER_TAB_H_INCLUDED
+#ifndef YY_YY_PARSER4_TAB_H_INCLUDED
+# define YY_YY_PARSER4_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -49,20 +49,74 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    PLS = 258,
-    MNS = 259,
-    MUL = 260,
-    DIV = 261,
-    NWL = 262,
-    NUM = 263,
-    LFT = 264,
-    RIT = 265
+    TOKEN_MINUS = 258,
+    TOKEN_INT_CONST = 259,
+    TOKEN_CHAR_CONST = 260,
+    TOKEN_ONELINE_COMMENT = 261,
+    TOKEN_SEVERAL_LINE_COMMENT = 262,
+    TOKEN_LEFTBRACKET = 263,
+    TOKEN_RIGHTBRACKET = 264,
+    TOKEN_LEFTBRACE = 265,
+    TOKEN_RIGHTBRACE = 266,
+    TOKEN_LEFTPAREN = 267,
+    TOKEN_DIVIDE = 268,
+    TOKEN_CARET = 269,
+    TOKEN_MOD = 270,
+    TOKEN_RIGHTPAREN = 271,
+    TOKEN_COMMA = 272,
+    TOKEN_DOT = 273,
+    TOKEN_PLUS = 274,
+    TOKEN_MULTI = 275,
+    TOKEN_SLASH = 276,
+    TOKEN_EXCLAMATION = 277,
+    TOKEN_ASSIGN = 278,
+    TOKEN_GREATER = 279,
+    TOKEN_LESS = 280,
+    TOKEN_LESSANDEQUAL = 281,
+    TOKEN_GREATERANDEQUAL = 282,
+    TOKEN_EQUAL = 283,
+    TOKEN_NOTEQUAL = 284,
+    TOKEN_PIPE = 285,
+    TOKEN_OR = 286,
+    TOKEN_AMPERSAND = 287,
+    TOKEN_AND = 288,
+    TOKEN_INT = 289,
+    TOKEN_CHAR = 290,
+    TOKEN_IF = 291,
+    TOKEN_ELSE = 292,
+    TOKEN_ELSEIF = 293,
+    TOKEN_WHILE = 294,
+    TOKEN_FOR = 295,
+    TOKEN_RETURN = 296,
+    TOKEN_VOID = 297,
+    TOKEN_MAIN = 298,
+    TOKEN_CONTINUE = 299,
+    TOKEN_BREAK = 300,
+    TOKEN_IDENTIFIER = 301,
+    TOKEN_MINUS_MINUS = 302,
+    TOKEN_PLUS_PLUS = 303,
+    TOKEN_ENTER = 304,
+    TOKEN_PLUSEQUAL = 305,
+    TOKEN_MINUSEQUAL = 306,
+    TOKEN_MULTIEQUAL = 307,
+    TOKEN_DIVIDEEQUAL = 308,
+    TOKEN_MODEQUAL = 309
   };
 #endif
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+union YYSTYPE
+{
+#line 14 "parser4.y"
+
+    char name[20];
+    int  number;  
+
+#line 117 "parser4.tab.h"
+
+};
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -72,4 +126,4 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_PARSER_TAB_H_INCLUDED  */
+#endif /* !YY_YY_PARSER4_TAB_H_INCLUDED  */
