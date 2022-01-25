@@ -1,0 +1,34 @@
+
+int a.
+int or char a = 12 or "c".
+
+if(){
+	
+}
+
+ a == b,const char,const int TOKEN_EQUAL
+a != b,const char,const int TOKEN_NOTEQUAL
+a >= b, const int,const char TOKEN_GREATERANDEQUAL
+a <= b, const int,const char TOKEN_LESSANDEQUAL
+a || b, const int,const char TOKEN_OR
+a && b, const int ,const char TOKEN_AND
+
+if(a == b >= c)
+
+TOKEN_LESS
+
+TOKEN_GREATER
+
+while(){
+	
+}
+
+int a
+for(a, ,)
+
+
+for(int a = 0,a< , )
+
+int main(){
+	
+}
