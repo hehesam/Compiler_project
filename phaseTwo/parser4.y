@@ -1,8 +1,8 @@
 %{
     #include <stdio.h>
-
-    extern FILE* yyin;
-    extern FILE* yyout;
+    
+    extern  FILE* yyin;
+s   extern FILE* yyout;
 
     extern int yylineno;
     extern char* yytext;
@@ -44,14 +44,11 @@ start       :
         ;
 
 grammer     :   
-                TOKEN_ENTER
+                TOKEN_ENTER{yylineno++;}
                 |type TOKEN_MAIN TOKEN_LEFTPAREN TOKEN_RIGHTPAREN full_body
                 
         ;
 
-type        :
-                TOKEN_INT
-                |TOKEN_CHAR
 
 full_body : 
             TOKEN_LEFTBRACE body_part TOKEN_RIGHTBRACE
@@ -60,19 +57,53 @@ full_body :
 
 
 body_part : 
-
-        |   body_part 
-        |   body_part TOKEN_ENTER
-        |   body_part Assign_value 
+            {yylineno++;}
+        |   body_part TOKEN_ENTER{yylineno++;}
+        |   body_part befor_Assign_value 
         |   body_part conditional
         |   body_part for_loop
+        |   body_part comment
+        |   body_part function_call
 
 
 
     ;
 
-Assign_value :
-            type TOKEN_IDENTIFIER TOKEN_ASSIGN value TOKEN_DOT
+
+function_call :
+           TOKEN_IDENTIFIER TOKEN_LEFTPAREN TOKEN_RIGHTPAREN TOKEN_DOT
+
+    ;
+        
+parameters :
+            TOKEN_IDENTIFIER
+        |   TOKEN_IDENTIFIER TOKEN_COMMA TOKEN_IDENTIFIER
+        |   TOKEN_IDENTIFIER TOKEN_COMMA TOKEN_IDENTIFIER TOKEN_COMMA TOKEN_IDENTIFIER
+
+    ;
+///////////////////////////////////////////////////
+comment :
+            TOKEN_SEVERAL_LINE_COMMENT 
+        |   TOKEN_ONELINE_COMMENT
+    ;
+///////////////////////////////////////////////////////////////////////////
+
+befor_Assign_value :
+            type TOKEN_IDENTIFIER after_Assign_value
+            | TOKEN_IDENTIFIER after_Assign_value
+
+    ;
+
+after_Assign_value :
+            TOKEN_ASSIGN value TOKEN_DOT
+            |TOKEN_ASSIGN TOKEN_IDENTIFIER TOKEN_DOT
+            |TOKEN_DOT
+    ;
+
+
+type        :
+                |TOKEN_INT
+                |TOKEN_CHAR
 
     ;
 
@@ -117,7 +148,7 @@ logical_gates  :
 //////////////////////////////////////////////////////////////////////////////
 
 for_loop   :
-        TOKEN_FOR TOKEN_LEFTPAREN variable_definition TOKEN_COMMA for_conditon TOKEN_COMMA step TOKEN_RIGHTPAREN body_part
+        TOKEN_FOR TOKEN_LEFTPAREN variable_definition TOKEN_COMMA for_conditon TOKEN_COMMA step TOKEN_RIGHTPAREN full_body
 
         ;
 
@@ -131,7 +162,8 @@ for_conditon :
         ;
 
 step :
-        TOKEN_IDENTIFIER 
+        
+        | TOKEN_IDENTIFIER 
         | step TOKEN_PLUS_PLUS 
         | step TOKEN_MINUS_MINUS
         | step TOKEN_PLUSEQUAL TOKEN_INT_CONST

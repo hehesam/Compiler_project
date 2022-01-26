@@ -1,1 +1,1 @@
-⛔️ Syntax error at line:1  before "functin"
+⛔️ Syntax error at line:8  before "("

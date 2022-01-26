@@ -34,13 +34,14 @@
 }
 
 
-[#][a-z|A-Z|0-9| ]+ {
-    
+[#].* {
+
+
     return (TOKEN_ONELINE_COMMENT);
 
 }
 
-[#!][a-z|A-Z|0-9|\t|\n| ]+[!#] {
+[#!][a-z|A-Z| | \n][!#] {
     
     return (TOKEN_SEVERAL_LINE_COMMENT);
 }
