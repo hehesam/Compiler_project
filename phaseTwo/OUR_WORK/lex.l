@@ -2,7 +2,7 @@
 /* Definition Section*/
 
 %{
-    #include "parser2.tab.h"
+    #include "parser3.tab.h"
     #include <stdio.h>
    
 %}
@@ -34,13 +34,14 @@
 }
 
 
-[#][a-z|A-Z|0-9| ]+ {
-    
+[#].* {
+
+
     return (TOKEN_ONELINE_COMMENT);
 
 }
 
-[#!][a-z|A-Z|0-9|\t|\n| ]+[!#] {
+[#!][a-z|A-Z| | \n][!#] {
     
     return (TOKEN_SEVERAL_LINE_COMMENT);
 }
@@ -95,6 +96,7 @@
     
     return (TOKEN_SLASH);
 }
+
 "^" {
     
     return (TOKEN_CARET);
@@ -109,13 +111,29 @@
     return (TOKEN_PLUS_PLUS);
 }
 
-
-
-
 "=" {
     
     return (TOKEN_ASSIGN);
 }
+"%" {
+	return(TOKEN_MOD);
+}
+"+=" {
+    return(TOKEN_PLUSEQUAL);
+}
+"-=" {
+    return(TOKEN_MINUSEQUAL);
+}
+"*=" {
+    return(TOKEN_MULTIEQUAL);
+}
+"/=" {
+    return(TOKEN_DIVIDEEQUAL);
+}
+"%=" {
+    return(TOKEN_MODEQUAL);
+}
+
 ">" {
     
     return (TOKEN_GREATER);
@@ -233,16 +251,20 @@
 
 [a-z|A-Z|_][a-z|A-Z|0-9|_]* {
     
-    return (TOKEN_INDENTIFIER);
+    return (TOKEN_IDENTIFIER);
 
 }
 
-[\n| ]+ {
-    
+
+[\n]+ {
+    return (TOKEN_ENTER);
+
+}
+
+[ ]+ {
+
 }
 
 
-
-%%
  /* Code Section */
  

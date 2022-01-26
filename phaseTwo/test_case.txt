@@ -5,13 +5,15 @@
 
 int main () {
 
-    int b.
-    int a = 0.
-    int a = b.
-    a = 0.
-    a = b.
+    int a = 12.
+ 
 
-    function().
+    function ().
+
+
+
+
+
    
     # I'MT RYaINGTO TESTON""""LONECOMMENT  !!!!
 
@@ -20,6 +22,10 @@ int main () {
         int a = b.
     }
     
+    int i =0.
+    while (i<10){
+        int c = 12.
+    }
     
 
 

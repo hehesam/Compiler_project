@@ -2,7 +2,7 @@
     #include <stdio.h>
     
     extern  FILE* yyin;
-s   extern FILE* yyout;
+    extern FILE* yyout;
 
     extern int yylineno;
     extern char* yytext;
@@ -44,8 +44,9 @@ start       :
         ;
 
 grammer     :   
-                TOKEN_ENTER{yylineno++;}
-                |type TOKEN_MAIN TOKEN_LEFTPAREN TOKEN_RIGHTPAREN full_body
+            TOKEN_ENTER{yylineno++;}
+        |   type TOKEN_MAIN TOKEN_LEFTPAREN TOKEN_RIGHTPAREN full_body
+        |   type TOKEN_IDENTIFIER TOKEN_LEFTPAREN function_parameters  TOKEN_RIGHTPAREN full_body
                 
         ;
 
@@ -64,19 +65,25 @@ body_part :
         |   body_part for_loop
         |   body_part comment
         |   body_part function_call
+        |   body_part break_and_continue
 
 
 
     ;
 
+break_and_continue :
+                TOKEN_BREAK TOKEN_DOT
+            |   TOKEN_RETURN TOKEN_IDENTIFIER TOKEN_DOT
+
 
 function_call :
-           TOKEN_IDENTIFIER TOKEN_LEFTPAREN TOKEN_RIGHTPAREN TOKEN_DOT
+           TOKEN_IDENTIFIER TOKEN_LEFTPAREN parameters TOKEN_RIGHTPAREN TOKEN_DOT
 
     ;
         
 parameters :
-            TOKEN_IDENTIFIER
+
+        |   TOKEN_IDENTIFIER
         |   TOKEN_IDENTIFIER TOKEN_COMMA TOKEN_IDENTIFIER
         |   TOKEN_IDENTIFIER TOKEN_COMMA TOKEN_IDENTIFIER TOKEN_COMMA TOKEN_IDENTIFIER
 
@@ -225,4 +232,3 @@ int main(int argc, char * argv[]){
 
     return 0;
  }
-

@@ -1,6 +1,15 @@
 %{
     #include <stdio.h>
+    
+    extern  FILE* yyin;
+    extern FILE* yyout;
+
+    extern int yylineno;
+    extern char* yytext;
+
+
 %}
+
 
 %union {
     char name[20];
@@ -10,12 +19,14 @@
 
 %token TOKEN_MINUS TOKEN_INT_CONST TOKEN_CHAR_CONST TOKEN_ONELINE_COMMENT TOKEN_SEVERAL_LINE_COMMENT
 %token TOKEN_LEFTBRACKET TOKEN_RIGHTBRACKET TOKEN_LEFTBRACE TOKEN_RIGHTBRACE TOKEN_LEFTPAREN
-%token TOKEN_RIGHTPAREN TOKEN_COMMA TOKEN_DOT TOKEN_PLUS TOKEN_MULTI TOKEN_DIVIDE TOKEN_SLASH TOKEN_CARET TOKEN_MOD
+%token TOKEN_DIVIDE TOKEN_CARET TOKEN_MOD
+%token TOKEN_RIGHTPAREN TOKEN_COMMA TOKEN_DOT TOKEN_PLUS TOKEN_MULTI TOKEN_SLASH
 %token TOKEN_EXCLAMATION TOKEN_ASSIGN TOKEN_GREATER TOKEN_LESS TOKEN_LESSANDEQUAL
 %token TOKEN_GREATERANDEQUAL TOKEN_EQUAL TOKEN_NOTEQUAL TOKEN_PIPE TOKEN_OR TOKEN_AMPERSAND TOKEN_AND
 %token TOKEN_INT TOKEN_CHAR TOKEN_IF TOKEN_ELSE TOKEN_ELSEIF TOKEN_WHILE TOKEN_FOR TOKEN_RETURN
-%token TOKEN_VOID TOKEN_MAIN TOKEN_CONTINUE TOKEN_BREAK TOKEN_INDENTIFIER
-%token TOKEN_MINUS_MINUS TOKEN_PLUS_PLUS TOKEN_PlusEqual TOKEN_MinusEqual TOKEN_MultiEqual TOKEN_DivideEqual TOKEN_ModEqual
+%token TOKEN_VOID TOKEN_MAIN TOKEN_CONTINUE TOKEN_BREAK TOKEN_IDENTIFIER
+%token TOKEN_MINUS_MINUS TOKEN_PLUS_PLUS TOKEN_ENTER TOKEN_PLUSEQUAL TOKEN_MINUSEQUAL TOKEN_MULTIEQUAL TOKEN_DIVIDEEQUAL TOKEN_MODEQUAL
+
 
 %start start
 
@@ -28,93 +39,106 @@
 %type<name> TOKEN_CHAR_CONST
 
 %%
-start   : 
-                grammer
+start       : 
+                |start grammer 
         ;
 
-
-grammer     :
-                type 
+grammer     :   
+                TOKEN_ENTER{yylineno++;}
+                |type TOKEN_MAIN TOKEN_LEFTPAREN TOKEN_RIGHTPAREN full_body
+                
         ;
 
-
-
-type : TOKEN_VOID 
-        |   TOKEN_INT 
-        |   TOKEN_CHAR 
-    ;
-
-main :  
-            TOKEN_MAIN TOKEN_LEFTPAREN  TOKEN_RIGHTPAREN
-    ;
 
 full_body : 
-            TOKEN_LEFTBRACE body_part TOKEN_RIGHTBRACE
+            TOKEN_LEFTBRACE function_call TOKEN_RIGHTBRACE
     ;
+
+
 
 body_part : 
+                function_call
+        //     {yylineno++;}
+        // |   body_part function_call
+        // |   body_part TOKEN_ENTER{yylineno++;}
+        // |   body_part befor_Assign_value 
+        // |   body_part conditional
+        // |   body_part for_loop
+        // |   body_part comment
 
-        |   body_part Assign_value
-        |   body_part conditional
-        |   body_part for_loop
-        |   body_part while_loop
+
 
     ;
 
-for_loop :
-        TOKEN_LEFTPAREN variable_definition TOKEN_COMMA for_conditon TOKEN_COMMA step TOKEN_RIGHTPAREN body_part
-        ;
 
-variable_definition :
-            type TOKEN_INDENTIFIER TOKEN_ASSIGN value 
-            | TOKEN_INDENTIFIER
+function_call :
+           TOKEN_IDENTIFIER TOKEN_LEFTPAREN TOKEN_RIGHTPAREN TOKEN_DOT
 
-
-for_conditon : 
-        logical_actions logical_gate logical_actions
-        ;
-
-step :
-        TOKEN_INDENTIFIER step_condition 
     ;
-step_condition :
-        TOKEN_PLUS_PLUS 
-        | TOKEN_MINUS_MINUS
-        | TOKEN_PlusEqual TOKEN_INT_CONST
-        | TOKEN_MinusEqual TOKEN_INT_CONST
-        | TOKEN_MultiEqual TOKEN_INT_CONST
-        | TOKEN TOKEN_DivideEqual TOKEN_INT_CONST
-        | TOKEN_ModEqual TOKEN_INT_CONST
+        
+parameters :
+            TOKEN_IDENTIFIER
+        |   TOKEN_IDENTIFIER TOKEN_COMMA TOKEN_IDENTIFIER
+        |   TOKEN_IDENTIFIER TOKEN_COMMA TOKEN_IDENTIFIER TOKEN_COMMA TOKEN_IDENTIFIER
 
+    ;
+///////////////////////////////////////////////////
+comment :
+            TOKEN_SEVERAL_LINE_COMMENT 
+        |   TOKEN_ONELINE_COMMENT
+    ;
+///////////////////////////////////////////////////////////////////////////
 
-while_loop :
-        TOKEN_WHILE TOKEN_LEFTPAREN while_condition TOKEN_RIGHTPAREN body_part
+befor_Assign_value :
+            type TOKEN_IDENTIFIER after_Assign_value
+            | TOKEN_IDENTIFIER after_Assign_value
+
     ;
 
-while_condition :
-    
+after_Assign_value :
+            TOKEN_ASSIGN value TOKEN_DOT
+            |TOKEN_ASSIGN TOKEN_IDENTIFIER TOKEN_DOT
+            |TOKEN_DOT
     ;
 
 
+type        :
+                |TOKEN_INT
+                |TOKEN_CHAR
+
+    ;
+
+
+value :
+            TOKEN_CHAR_CONST
+        |   TOKEN_INT_CONST 
+        |   TOKEN_IDENTIFIER
+
+    ;
+//////////////////////////////////////////////////////////////////////////////
 conditional :
             TOKEN_IF condition full_body
         |   TOKEN_WHILE condition full_body
     ;
 
+
 condition :
-            TOKEN_LEFTPAREN TOKEN_INDENTIFIER logical_actions logical_gate logical_actions TOKEN_RIGHTPAREN 
+            TOKEN_LEFTPAREN logical_actions logical_gates logical_actions TOKEN_RIGHTPAREN 
 
         ;
 
 logical_actions :
-             TOKEN_INDENTIFIER
+             TOKEN_IDENTIFIER
             |  TOKEN_CHAR_CONST
             |  TOKEN_INT_CONST
 
         ;
 
-logical_gate  :
+
+logical_gates  :
             TOKEN_LESSANDEQUAL
+            |TOKEN_LESS
+            |TOKEN_GREATER
             |TOKEN_GREATERANDEQUAL
             |TOKEN_EQUAL
             |TOKEN_NOTEQUAL
@@ -122,6 +146,47 @@ logical_gate  :
             |TOKEN_OR
         
         ;
+//////////////////////////////////////////////////////////////////////////////
+
+for_loop   :
+        TOKEN_FOR TOKEN_LEFTPAREN variable_definition TOKEN_COMMA for_conditon TOKEN_COMMA step TOKEN_RIGHTPAREN full_body
+
+        ;
+
+variable_definition :
+            type TOKEN_IDENTIFIER TOKEN_ASSIGN value 
+            | TOKEN_IDENTIFIER TOKEN_ASSIGN value
+            | TOKEN_IDENTIFIER
+
+for_conditon : 
+        logical_actions logical_gates logical_actions
+        ;
+
+step :
+        
+        | TOKEN_IDENTIFIER 
+        | step TOKEN_PLUS_PLUS 
+        | step TOKEN_MINUS_MINUS
+        | step TOKEN_PLUSEQUAL TOKEN_INT_CONST
+        | step TOKEN_MINUSEQUAL TOKEN_INT_CONST
+        | step TOKEN_MULTIEQUAL TOKEN_INT_CONST
+        | step TOKEN_DIVIDEEQUAL TOKEN_INT_CONST
+        | step TOKEN_MODEQUAL TOKEN_INT_CONST
+        | step TOKEN_EQUAL TOKEN_IDENTIFIER arithmetic_oparator TOKEN_INT_CONST
+    ;
+
+step_condition :
+        TOKEN_PLUS_PLUS 
+        | TOKEN_MINUS_MINUS
+        | TOKEN_PLUSEQUAL TOKEN_INT_CONST
+        | TOKEN_MINUSEQUAL TOKEN_INT_CONST
+        | TOKEN_MULTIEQUAL TOKEN_INT_CONST
+        | TOKEN_DIVIDEEQUAL TOKEN_INT_CONST
+        | TOKEN_MODEQUAL TOKEN_INT_CONST
+        | TOKEN_EQUAL TOKEN_IDENTIFIER arithmetic_oparator TOKEN_INT_CONST
+    ;
+
+
 arithmetic_oparator :
             TOKEN_PLUS
             |TOKEN_MINUS
@@ -133,36 +198,26 @@ arithmetic_oparator :
 
 
 
-Assign_value : 
-            type TOKEN_INDENTIFIER TOKEN_ASSIGN value TOKEN_DOT
-          
-;
-
-
-value :
-            TOKEN_CHAR_CONST{printf("the string of constant_str is : %s", $1);} 
-        |   TOKEN_INT_CONST {printf("the number of constant_int is : %d", $1);}
-        |   TOKEN_INDENTIFIER
-
-;
 %%
 
 
+void yyerror(char *s){
+    fprintf(stderr, "⛔️ Syntax error at line:%d  before \"%s\"\n", yylineno, yytext);
+    fprintf(yyout, "⛔️ Syntax error at line:%d  before \"%s\"\n", yylineno, yytext);
+}
 
-
-
-int Yywarp(){
+int yywrap(){
+    return 1;
 }
 
 
 
 
 
+int main(int argc, char * argv[]){
 
-
-int main(){
-    FILE *inputFile = fopen("test_case.txt","r");
-    yyin = inputFile;
+    
+    yyin = fopen("test_case.txt","r");
 
     FILE *outputFile = fopen("Phase1_Tokens.txt", "w");
     yyout = outputFile;
@@ -172,6 +227,3 @@ int main(){
     return 0;
  }
 
-void yyerror(char *s){
-    printf("Error happend %s", s);
-}
