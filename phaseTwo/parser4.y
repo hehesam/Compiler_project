@@ -46,7 +46,7 @@ start       :
 grammer     :   
             TOKEN_ENTER{yylineno++;}
         |   type TOKEN_MAIN TOKEN_LEFTPAREN TOKEN_RIGHTPAREN full_body
-        |   type TOKEN_IDENTIFIER TOKEN_LEFTPAREN function_parameters  TOKEN_RIGHTPAREN full_body
+        // |   type TOKEN_IDENTIFIER TOKEN_LEFTPAREN function_parameters  TOKEN_RIGHTPAREN full_body
                 
         ;
 
@@ -65,15 +65,16 @@ body_part :
         |   body_part for_loop
         |   body_part comment
         |   body_part function_call
-        |   body_part break_and_continue
+        |   body_part break_continue_return
 
 
 
     ;
 
-break_and_continue :
+break_continue_return :
                 TOKEN_BREAK TOKEN_DOT
             |   TOKEN_RETURN TOKEN_IDENTIFIER TOKEN_DOT
+            |   TOKEN_CONTINUE TOKEN_DOT
 
 
 function_call :
@@ -105,8 +106,25 @@ after_Assign_value :
             TOKEN_ASSIGN value TOKEN_DOT
             |TOKEN_ASSIGN TOKEN_IDENTIFIER TOKEN_DOT
             |TOKEN_DOT
+            |other_assign_format TOKEN_DOT
     ;
 
+
+other_assign_format :
+           TOKEN_PLUS_PLUS 
+        |  TOKEN_MINUS_MINUS 
+        |  TOKEN_PLUSEQUAL identifier_int_const
+        |  TOKEN_MINUSEQUAL identifier_int_const
+        |  TOKEN_MULTIEQUAL identifier_int_const
+        |  TOKEN_DIVIDEEQUAL identifier_int_const
+        |  TOKEN_MODEQUAL identifier_int_const
+        |  TOKEN_ASSIGN TOKEN_IDENTIFIER arithmetic_oparator identifier_int_const            
+
+
+
+identifier_int_const    :
+            TOKEN_INT_CONST
+        |   TOKEN_IDENTIFIER
 
 type        :
                 |TOKEN_INT
@@ -123,10 +141,17 @@ value :
     ;
 //////////////////////////////////////////////////////////////////////////////
 conditional :
-            TOKEN_IF condition full_body
-        |   TOKEN_WHILE condition full_body
+             TOKEN_IF condition full_body
+        |    TOKEN_IF condition full_body TOKEN_ELSE  full_body
+        |    TOKEN_IF condition full_body alot_elseIf condition full_body
+        |    TOKEN_IF condition full_body alot_elseIf condition full_body TOKEN_ELSE condition full_body
+        |    TOKEN_WHILE condition full_body
     ;
 
+alot_elseIf :
+            |alot_elseIf TOKEN_ELSEIF
+
+    ;
 
 condition :
             TOKEN_LEFTPAREN logical_actions logical_gates logical_actions TOKEN_RIGHTPAREN 
@@ -178,19 +203,19 @@ step :
         | step TOKEN_MULTIEQUAL TOKEN_INT_CONST
         | step TOKEN_DIVIDEEQUAL TOKEN_INT_CONST
         | step TOKEN_MODEQUAL TOKEN_INT_CONST
-        | step TOKEN_EQUAL TOKEN_IDENTIFIER arithmetic_oparator TOKEN_INT_CONST
+        | step TOKEN_ASSIGN TOKEN_IDENTIFIER arithmetic_oparator TOKEN_INT_CONST
     ;
 
-step_condition :
-        TOKEN_PLUS_PLUS 
-        | TOKEN_MINUS_MINUS
-        | TOKEN_PLUSEQUAL TOKEN_INT_CONST
-        | TOKEN_MINUSEQUAL TOKEN_INT_CONST
-        | TOKEN_MULTIEQUAL TOKEN_INT_CONST
-        | TOKEN_DIVIDEEQUAL TOKEN_INT_CONST
-        | TOKEN_MODEQUAL TOKEN_INT_CONST
-        | TOKEN_EQUAL TOKEN_IDENTIFIER arithmetic_oparator TOKEN_INT_CONST
-    ;
+// step_condition :
+//         TOKEN_PLUS_PLUS 
+//         | TOKEN_MINUS_MINUS
+//         | TOKEN_PLUSEQUAL TOKEN_INT_CONST
+//         | TOKEN_MINUSEQUAL TOKEN_INT_CONST
+//         | TOKEN_MULTIEQUAL TOKEN_INT_CONST
+//         | TOKEN_DIVIDEEQUAL TOKEN_INT_CONST
+//         | TOKEN_MODEQUAL TOKEN_INT_CONST
+//         | TOKEN_EQUAL TOKEN_IDENTIFIER arithmetic_oparator TOKEN_INT_CONST
+//     ;
 
 
 arithmetic_oparator :

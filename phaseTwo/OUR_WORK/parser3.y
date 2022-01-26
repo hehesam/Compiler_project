@@ -44,14 +44,14 @@ start       :
         ;
 
 grammer     :   
-                TOKEN_ENTER{yylineno++;}
-                |type TOKEN_MAIN TOKEN_LEFTPAREN TOKEN_RIGHTPAREN full_body
-                
+                // TOKEN_ENTER{yylineno++;}
+                // |type TOKEN_MAIN TOKEN_LEFTPAREN TOKEN_RIGHTPAREN full_body
+                TOKEN_INT TOKEN_MAIN                
         ;
 
 
 full_body : 
-            TOKEN_LEFTBRACE function_call TOKEN_RIGHTBRACE
+            TOKEN_LEFTBRACE body_part TOKEN_RIGHTBRACE
     ;
 
 
