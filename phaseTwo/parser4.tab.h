@@ -95,12 +95,11 @@ extern int yydebug;
     TOKEN_IDENTIFIER = 301,
     TOKEN_MINUS_MINUS = 302,
     TOKEN_PLUS_PLUS = 303,
-    TOKEN_ENTER = 304,
-    TOKEN_PLUSEQUAL = 305,
-    TOKEN_MINUSEQUAL = 306,
-    TOKEN_MULTIEQUAL = 307,
-    TOKEN_DIVIDEEQUAL = 308,
-    TOKEN_MODEQUAL = 309
+    TOKEN_PLUSEQUAL = 304,
+    TOKEN_MINUSEQUAL = 305,
+    TOKEN_MULTIEQUAL = 306,
+    TOKEN_DIVIDEEQUAL = 307,
+    TOKEN_MODEQUAL = 308
   };
 #endif
 
@@ -113,7 +112,7 @@ union YYSTYPE
     char name[20];
     int  number;  
 
-#line 117 "parser4.tab.h"
+#line 116 "parser4.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

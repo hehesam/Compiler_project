@@ -25,7 +25,7 @@
 %token TOKEN_GREATERANDEQUAL TOKEN_EQUAL TOKEN_NOTEQUAL TOKEN_PIPE TOKEN_OR TOKEN_AMPERSAND TOKEN_AND
 %token TOKEN_INT TOKEN_CHAR TOKEN_IF TOKEN_ELSE TOKEN_ELSEIF TOKEN_WHILE TOKEN_FOR TOKEN_RETURN
 %token TOKEN_VOID TOKEN_MAIN TOKEN_CONTINUE TOKEN_BREAK TOKEN_IDENTIFIER
-%token TOKEN_MINUS_MINUS TOKEN_PLUS_PLUS TOKEN_ENTER TOKEN_PLUSEQUAL TOKEN_MINUSEQUAL TOKEN_MULTIEQUAL TOKEN_DIVIDEEQUAL TOKEN_MODEQUAL
+%token TOKEN_MINUS_MINUS TOKEN_PLUS_PLUS  TOKEN_PLUSEQUAL TOKEN_MINUSEQUAL TOKEN_MULTIEQUAL TOKEN_DIVIDEEQUAL TOKEN_MODEQUAL
 
 
 %start start
@@ -40,13 +40,11 @@
 
 %%
 start       : 
-                |start grammer 
+        |   start grammer 
         ;
 
 grammer     :   
-            TOKEN_ENTER{yylineno++;}
         |   type TOKEN_MAIN TOKEN_LEFTPAREN TOKEN_RIGHTPAREN full_body
-        // |   type TOKEN_IDENTIFIER TOKEN_LEFTPAREN function_parameters  TOKEN_RIGHTPAREN full_body
                 
         ;
 
@@ -58,8 +56,6 @@ full_body :
 
 
 body_part : 
-            {yylineno++;}
-        |   body_part TOKEN_ENTER{yylineno++;}
         |   body_part befor_Assign_value 
         |   body_part conditional
         |   body_part for_loop
@@ -72,10 +68,11 @@ body_part :
     ;
 
 break_continue_return :
-                TOKEN_BREAK TOKEN_DOT
-            |   TOKEN_RETURN TOKEN_IDENTIFIER TOKEN_DOT
-            |   TOKEN_CONTINUE TOKEN_DOT
+            TOKEN_BREAK TOKEN_DOT
+        |   TOKEN_RETURN TOKEN_IDENTIFIER TOKEN_DOT
+        |   TOKEN_CONTINUE TOKEN_DOT
 
+    ;
 
 function_call :
            TOKEN_IDENTIFIER TOKEN_LEFTPAREN parameters TOKEN_RIGHTPAREN TOKEN_DOT
@@ -98,15 +95,16 @@ comment :
 
 befor_Assign_value :
             type TOKEN_IDENTIFIER after_Assign_value
-            | TOKEN_IDENTIFIER after_Assign_value
+        |   TOKEN_IDENTIFIER after_Assign_value
 
     ;
 
+
 after_Assign_value :
             TOKEN_ASSIGN value TOKEN_DOT
-            |TOKEN_ASSIGN TOKEN_IDENTIFIER TOKEN_DOT
-            |TOKEN_DOT
-            |other_assign_format TOKEN_DOT
+        |   TOKEN_ASSIGN TOKEN_IDENTIFIER TOKEN_DOT
+        |   TOKEN_DOT
+        |   other_assign_format TOKEN_DOT
     ;
 
 
@@ -126,9 +124,11 @@ identifier_int_const    :
             TOKEN_INT_CONST
         |   TOKEN_IDENTIFIER
 
+
+
 type        :
-                |TOKEN_INT
-                |TOKEN_CHAR
+        |   TOKEN_INT
+        |   TOKEN_CHAR
 
     ;
 
@@ -143,13 +143,13 @@ value :
 conditional :
              TOKEN_IF condition full_body
         |    TOKEN_IF condition full_body TOKEN_ELSE  full_body
-        |    TOKEN_IF condition full_body alot_elseIf condition full_body
-        |    TOKEN_IF condition full_body alot_elseIf condition full_body TOKEN_ELSE condition full_body
+        |    TOKEN_IF condition full_body alot_elseIf  
+        |    TOKEN_IF condition full_body alot_elseIf  TOKEN_ELSE  full_body
         |    TOKEN_WHILE condition full_body
     ;
 
 alot_elseIf :
-            |alot_elseIf TOKEN_ELSEIF
+        |   alot_elseIf TOKEN_ELSEIF condition full_body
 
     ;
 
@@ -159,9 +159,9 @@ condition :
         ;
 
 logical_actions :
-             TOKEN_IDENTIFIER
-            |  TOKEN_CHAR_CONST
-            |  TOKEN_INT_CONST
+            TOKEN_IDENTIFIER
+        |   TOKEN_CHAR_CONST
+        |   TOKEN_INT_CONST
 
         ;
 
@@ -233,8 +233,8 @@ arithmetic_oparator :
 
 
 void yyerror(char *s){
-    fprintf(stderr, "⛔️ Syntax error at line:%d  before \"%s\"\n", yylineno, yytext);
-    fprintf(yyout, "⛔️ Syntax error at line:%d  before \"%s\"\n", yylineno, yytext);
+    fprintf(stderr, " Syntax error at line:%d  before \"%s\"\n", yylineno, yytext);
+    fprintf(yyout, " Syntax error at line:%d  before \"%s\"\n", yylineno, yytext);
 }
 
 int yywrap(){
