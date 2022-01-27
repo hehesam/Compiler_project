@@ -45,8 +45,15 @@ start       :
 
 grammer     :   
         |   type TOKEN_MAIN TOKEN_LEFTPAREN TOKEN_RIGHTPAREN full_body
+        |   type TOKEN_IDENTIFIER TOKEN_LEFTPAREN function_parameters TOKEN_RIGHTPAREN full_body 
                 
         ;
+
+
+function_parameters :
+        |   type TOKEN_IDENTIFIER
+        |   type TOKEN_IDENTIFIER TOKEN_COMMA type TOKEN_IDENTIFIER
+        |   type TOKEN_IDENTIFIER TOKEN_COMMA type TOKEN_IDENTIFIER TOKEN_COMMA type TOKEN_IDENTIFIER
 
 
 full_body : 
